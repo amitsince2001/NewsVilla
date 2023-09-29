@@ -1,7 +1,17 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
+
 // serve up production assets
 app.use(express.static("build"));
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+
+app.options("*", cors());
+
 // let the react app to handle any unknown routes
 // serve up the index.html if express does'nt recognize the route
 const path = require("path");
